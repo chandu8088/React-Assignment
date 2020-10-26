@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import {BrowserRouter,Redirect, Route,Switch} from 'react-router-dom'
+import {connect} from 'react-redux'
+import Header from './Components/Header/Header'
+import Footer from './Components/Footer/Footer'
+import Signin from './Pages/Signin/Signin'
+import ViewRecipePage from './Pages/ViewRecipePage'
+import SubmitRecipe from './Components/SubmitRecipe/SubmitRecipe'
+import Home from './Pages/Home'
+import ThemeBuilder from './Components/Themediv/themebuild'
+class App extends Component {
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  
+  render() {
+    const islogin=this.props.Lgn
+   let content;
+   if(islogin===false)
+    content=
+    <Signin></Signin>
+  
+    else
+    content=<>
+    <Header/>
+    <Route path='/home' exact component={Home}/>
+    <Route path='/viewrecipe' exact component={ViewRecipePage}/>
+    <Route path='/submitrecipe' exact component={SubmitRecipe}/>
+    <Footer/>
+    </>
+    return(
+      <BrowserRouter>
+        <div> 
+          {content} 
+        </div>
+      </BrowserRouter>
+      
+    );
+    
+  }
+    
+
 }
-
-export default App;
+const mapStateToProps=state=>{
+  return{
+      Lgn:state.isLogin
+  };
+  };
+export default connect(mapStateToProps)(App);
