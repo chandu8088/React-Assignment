@@ -27,7 +27,7 @@ class Container extends Component
      
     
             componentDidMount(){
-                axios.get('https://my-food-recipe.firebaseio.com/.json')
+                axios.get('https://foodrecipejson.firebaseio.com/.json')
                 
                 .then(response=>{
                                         this.setState({
@@ -63,7 +63,7 @@ class Container extends Component
                                     <div key={key}>
                                     <FirstImageContainer>
                                     <ImageWrapper  onMouseOver={() => this.MouseOver(index)} onMouseOut={this.MouseOut}  >
-                                        <FiestImage  src={require(`../../Assets/Images/${post[key].image}.jpg`)}></FiestImage>
+                                        <Link to='/viewrecipe'><FiestImage  src={require(`../../Assets/Images/${post[key].image}.jpg`)}></FiestImage></Link>
                                         { 
                                         this.state.onhovermouse===true && this.state.activeIndex===index?
                                             <div>
