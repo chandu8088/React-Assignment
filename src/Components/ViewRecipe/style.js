@@ -5,10 +5,21 @@ max-height: 250px;
     overflow: hidden;
     position: relative;
     margin: 0 0 40px 0;
+    @media only screen and (max-width: 767px)
+{
+    max-height: 125px;
+}
 `;
 export const ImageElement=styled.img.attrs({src:"http://www.vasterad.com/themes/chow/images/recipeBackground.jpg"})`
 width: 100%;
     height: auto;
+    @media only screen and (max-width: 767px)
+{
+    height: 125px;
+    width: auto;
+    position: relative;
+    display: block;
+}
 `;
 export const SideImagecontainer=styled.div`
 width: 700px;
@@ -16,6 +27,20 @@ float: left;
     display: inline;
     margin-left: 10px;
     margin-right: 10px;
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+ {
+    width: 700px;
+}
+@media only screen and (max-width: 990px) and (min-width: 768px)
+.container .twelve.columns {
+    width: 556px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px){
+    width: 420px;
+}
+@media only screen and (max-width: 767px){
+    width: 300px;
+}
 `;
 export const MainHeader=styled.div`
 margin-right: 40px;
@@ -61,6 +86,22 @@ border-style: solid;
 export const ImageBox=styled.img.attrs({ src: img1 })`
 width: 100%;
     height: 320px;
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+ {
+    height: 320px;
+}
+@media only screen and (max-width: 990px) and (min-width: 768px)
+ {
+    height: 260px;
+}
+@media only screen and (max-width: 767px)
+{
+    height: 220px;
+}
+@media only screen and (max-width: 479px)
+{
+    height: 180px;
+}
 `;
 export const ImageDetails=styled.div`
 padding: 20px 23px 20px 35px;
@@ -104,6 +145,15 @@ background-color: rgb(255, 255, 255);
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
+    @media only screen and (max-width: 990px) and (min-width: 768px)
+{
+    left: 60px;
+}
+@media only screen and (max-width: 767px)
+{
+    padding: 30px 0;
+}
+
 `;
 export const Listitems=styled.div`
 border-bottom: 1px solid rgb(233, 233, 233);

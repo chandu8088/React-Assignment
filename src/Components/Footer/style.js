@@ -3,14 +3,29 @@ export const Main_Footer=styled.div`
     background: #333333;
     color: #b8b8b8;
     width:100%;
-    height:265px;
-    display:flex;
-    
+    display:flex; 
 `;
 export const Footer_container=styled.div`
 margin: 35px auto 40px auto;
 width:960px;
-
+@media only screen and (max-width: 990px) and (min-width: 768px)
+ {
+    width: 768px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+    width: 420px;
+}
+@media only screen and (max-width: 767px)
+ {
+    width: 300px;
+}
+@media only screen and (max-width: 1389px) and (min-width: 960px)
+ {
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+}
 `;
 export const FIrst_column=styled.div`
 width: 280px;
@@ -19,6 +34,20 @@ float: left;
     margin-left: 10px;
     margin-right: 10px;
     display:inline;
+    @media only screen and (max-width: 767px){
+        width:300;
+    }
+    @media only screen and (max-width: 990px) and (min-width: 768px)
+ {
+    width: 220px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px){
+    width: 420px;
+}
+@media only screen and (max-width: 1389px) and (min-width: 960px)
+ {
+    width: 280px;
+}
     `;
 export const Headertag=styled.h3`
 font-size: 16px;
@@ -55,6 +84,20 @@ width: 160px;
 float: left;
     margin-left: 10px;
     margin-right: 10px;
+    
+    @media only screen and (max-width: 990px) and (min-width: 768px)
+{
+    width: 124px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px){
+    width: 420px;
+}
+@media only screen and (max-width: 767px){
+    width:300px;
+}
+@media only screen and (max-width: 1389px) and (min-width: 960px) {
+    width: 160px;
+}
 `;
 export const UnorderList_Archive=styled.ul`
 list-style: none outside;
@@ -95,7 +138,7 @@ float: left;
     border: 0.5px solid #474747;
 `;
 export const ButtonElement=styled.button`
-background-color: #8dc63f;
+background-color:${props=>props.value};
 font-size: 13px;
     font-weight: 700;
     color: #fff;

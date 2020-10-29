@@ -15,12 +15,21 @@ import {MainHeader,
     UnorderListRecipe,
     UnorderListShop,
     UnorderListPage,
-    BorderHome,
-    BorderSubmit
+    BorderSubmit,MenuSpan,
+    Button,
+    MobileDiv,
+    StyledLogout,
+    Heading,
+    SubHeading,
+    SelectedMobileDiv,
+    DropDownContainer,
+    MobileHeader
 } from'./styles'
+import logo from '../../Assets/Images/logo.png'
+
 class Header extends Component
 {   state={showDemos:false,showRecipes:false,
-    showPages:false,showShop:false,showSubmit:false
+    showPages:false,showShop:false,showSubmit:false,dropdown:false
     }
     OnDemosHandler=()=>{
         this.setState({showDemos:true});
@@ -55,10 +64,59 @@ class Header extends Component
     logout=()=>{
         this.props.logoutChecker()
     }
+    dropDownStateTrue=()=>{
+        this.setState({dropdown:false})
+    }
+    dropDownStateFalse=()=>{
+        this.setState({dropdown:true})
+    }
     render(){
+        let dropDown;
+        let mobileDiv;
+        if (this.state.dropdown === true){
+            mobileDiv =
+                <>
+                    <SelectedMobileDiv>
+                        <MenuSpan style={{ color: "white" }}>MENU</MenuSpan>
+                        <Button onClick={this.dropDownStateTrue}><MenuSpan  style={{ backgroundColor: "#8DC63F" }}><i class="fa fa-times" aria-hidden="true" style={{ backgroundColor: "#8DC63F", color: "white", fontSize: "200%" }}></i></MenuSpan></Button>
+                    </SelectedMobileDiv>
+                </>;
+                dropDown =
+                <>
+                    <DropDownContainer>
+                        <Heading to="/home">Home</Heading>
+                        <Heading >Demos</Heading>
+                        <SubHeading>Grid Homepage</SubHeading>
+                        <SubHeading>List Homepage</SubHeading>
+                        <SubHeading>Boxed Version</SubHeading>
+                        <Heading >Recipes</Heading>
+                        <SubHeading>Browse Recipes</SubHeading>
+                        <SubHeading>Recipe Page #1</SubHeading>
+                        <SubHeading>Recipe Page #2</SubHeading>
+                        <Heading >Pages</Heading>
+                        <SubHeading>Shortcodes</SubHeading>
+                        <SubHeading>Typography</SubHeading>
+                        <Heading to="/submitrecipe" >Submit Recipe</Heading>
+                        <StyledLogout onClick={this.logout}>Logout</StyledLogout>
+    
+                    </DropDownContainer>
+                </>;
+        }
+        else
+           {mobileDiv =
+                <>
+                    <MobileDiv>
+                        <MenuSpan>MENU</MenuSpan>
+                        <Button onClick={this.dropDownStateFalse}><MenuSpan><i class="fa fa-bars" aria-hidden="true" style={{ fontSize: "200%" }}></i></MenuSpan></Button>
+                    </MobileDiv>
+                </>}
         return(
             <div>
-                
+                <MobileHeader>
+                    <div><img src={logo} height="" alt="logo" /></div>
+                    {mobileDiv}
+                    {dropDown}
+                </MobileHeader>
                 <MainHeader>
                     <Container>
                         <Imagcontainer>
@@ -67,7 +125,7 @@ class Header extends Component
                         <Navtab>
                             <Navbar>
                             <Link to='/home' style={{ textDecoration: 'none',color:'black'}}><Home_container>Home</Home_container></Link>
-                                <BorderHome></BorderHome>
+                                
                                 <Home_container onMouseOver={this.OnDemosHandler} onMouseOut={this.OverDemoshandler}>Demos</Home_container>
                                 {this.state.showDemos === true ?
                                     <div>

@@ -166,8 +166,8 @@ shiftToSignup=()=>{
                         </NameContainer>
                     </div>
                     
-                    <Link to='/home'><SignUpButton onClick={this.equalCheck}>Sign In</SignUpButton></Link>
-                    <SignInButton onClick={this.shiftToSignup}>Sign Up</SignInButton>
+                    <Link to='/home'><SignUpButton value={this.props.tm} onClick={this.equalCheck}>Sign In</SignUpButton></Link>
+                    <SignInButton value={this.props.tm} onClick={this.shiftToSignup}>Sign Up</SignInButton>
 
                 </FromElement></>:<><FromElement>
                     <Pageheader>Signup</Pageheader>
@@ -208,7 +208,8 @@ shiftToSignup=()=>{
 }
 const mapStateToProps=state=>{
 return{
-    Lgn:state.isLogin
+    Lgn:state.isLogin,
+    tm:state.theme
 };
 };
 const mapDispatchToProps=dispatch=>{

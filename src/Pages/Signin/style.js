@@ -8,12 +8,20 @@ min-width: auto;
 export const SideImage=styled.div`
 width: 60%;
     height: 1050px;
-    background-image:URL("${Signin}")
+    background-image:URL("${Signin}");
+    @media (max-width: 425px)
+ {
+    display: none;
+}
 `;
 export const FromElement=styled.div`
 padding: 20px;
     width: 40%;
     font-size: 18px;
+    @media (max-width: 425px)
+{
+    width: 100%;
+}
 `;
 export const Pageheader=styled.p`
 font-size: 39px;

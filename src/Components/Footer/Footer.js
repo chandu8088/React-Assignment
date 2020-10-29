@@ -11,6 +11,8 @@ import {Main_Footer,
         InputElement,
         ButtonElement
     } from './style'
+import {connect} from 'react-redux'
+
 class Footer extends Component {
     
     
@@ -62,7 +64,7 @@ class Footer extends Component {
                             </F_para>
                             <form action='#'>
                                 <InputElement type="text" placeholder="mail@example.com"></InputElement>
-                                <ButtonElement type="submit">SUBSCRIBE</ButtonElement>
+                                <ButtonElement type="submit" value={this.props.tm}>SUBSCRIBE</ButtonElement>
                             </form>
                         </FIrst_column>
                     </Footer_container>
@@ -72,4 +74,9 @@ class Footer extends Component {
         )
     }
 }
-export default Footer
+const mapStateToProps=state=>{
+    return{
+        tm:state.theme
+    };
+    };
+export default connect(mapStateToProps)(Footer); 

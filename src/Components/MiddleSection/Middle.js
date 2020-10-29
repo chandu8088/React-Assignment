@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import { Icon } from 'react-icons-kit'
+import {connect} from 'react-redux'
 import {clockO} from 'react-icons-kit/fa/clockO'
 import {spoon} from 'react-icons-kit/ionicons/spoon'
 import {person} from 'react-icons-kit/ionicons/person'
@@ -27,18 +28,20 @@ import {ImageWrapper,
 
 from './style'
 class Middle extends Component
-{   state={value:1}
+{   state={value:1,bgcolor1:this.props.tm,bgcolor2:null,bgcolor3:null,bgcolor4:null}
 FirstImage=()=>{
-    this.setState({value:1})
+    this.setState({value:1,bgcolor1:this.props.tm,bgcolor2:null,bgcolor3:null,bgcolor4:null})
+    
 }
 SecondImage=()=>{
-    this.setState({value:2})
+    this.setState({value:2,bgcolor1:null,bgcolor2:this.props.tm,bgcolor3:null,bgcolor4:null})
+    
 }
 ThirdImage=()=>{
-    this.setState({value:3})
+    this.setState({value:3,bgcolor1:null,bgcolor2:null,bgcolor3:this.props.tm,bgcolor4:null})
 }
 FourthImage=()=>{
-    this.setState({value:4})
+    this.setState({value:4,bgcolor1:null,bgcolor2:null,bgcolor3:null,bgcolor4:this.props.tm})
 }
     render(){
     
@@ -49,7 +52,7 @@ FourthImage=()=>{
                     <MainImage value={this.state.value}>
                         <TextBox>
                             <MainHeaderContainer>
-                                <HeaderTag>Baking</HeaderTag>
+                                <HeaderTag value={this.props.tm}>Baking</HeaderTag>
                                 <HeaderText>
                                     <InsideHeader>Mexican Grilled Corn Recipe</InsideHeader>
                                 </HeaderText>
@@ -68,7 +71,7 @@ FourthImage=()=>{
                     <MainImage1 value={this.state.value}>
                     <TextBox>
                             <MainHeaderContainer>
-                                <HeaderTag>Curry</HeaderTag>
+                                <HeaderTag value={this.props.tm}>Curry</HeaderTag>
                                 <HeaderText>
                                     <InsideHeader>Roast Chicken With Lemon Gravy</InsideHeader>
                                 </HeaderText>
@@ -87,7 +90,7 @@ FourthImage=()=>{
                     <MainImage2 value={this.state.value}>
                     <TextBox>
                             <MainHeaderContainer>
-                                <HeaderTag>Baking</HeaderTag>
+                                <HeaderTag value={this.props.tm}>Baking</HeaderTag>
                                 <HeaderText>
                                     <InsideHeader>Avocado Melon Salad With Lime Vinaigrette</InsideHeader>
                                 </HeaderText>
@@ -106,7 +109,7 @@ FourthImage=()=>{
                     <MainImage3 value={this.state.value}>
                     <TextBox>
                             <MainHeaderContainer>
-                                <HeaderTag>Baking</HeaderTag>
+                                <HeaderTag value={this.props.tm}>Baking</HeaderTag>
                                 <HeaderText>
                                     <InsideHeader>Chunky Beef Stew</InsideHeader>
                                 </HeaderText>
@@ -123,10 +126,10 @@ FourthImage=()=>{
                         </TextBox>
                     </MainImage3>
                     <CarousalHolder>
-                        <CarosalButtons onClick={this.FirstImage} value={this.state.value}><InsideButton>Mexican Grilled <br></br> Corn Recipe</InsideButton></CarosalButtons>
-                        <CarosalButtons1 onClick={this.SecondImage} value={this.state.value}><InsideButton>Roast Chicken <br></br> With Lemon Gravy</InsideButton></CarosalButtons1>
-                        <CarosalButtons2 onClick={this.ThirdImage} value={this.state.value}><InsideButton>Avocado Melon Salad <br></br>With Lime Vinaigrette</InsideButton></CarosalButtons2>
-                        <CarosalButtons3 onClick={this.FourthImage} value={this.state.value}><InsideButton>Chunky Beef Stew</InsideButton></CarosalButtons3>
+                        <CarosalButtons onClick={this.FirstImage} style={{backgroundColor: this.state.bgcolor1}} value={this.state.value}><InsideButton>Mexican Grilled <br></br> Corn Recipe</InsideButton></CarosalButtons>
+                        <CarosalButtons1 onClick={this.SecondImage} style={{backgroundColor: this.state.bgcolor2}} value={this.state.value}><InsideButton>Roast Chicken <br></br> With Lemon Gravy</InsideButton></CarosalButtons1>
+                        <CarosalButtons2 onClick={this.ThirdImage} style={{backgroundColor: this.state.bgcolor3}} value={this.state.value}><InsideButton>Avocado Melon Salad <br></br>With Lime Vinaigrette</InsideButton></CarosalButtons2>
+                        <CarosalButtons3 onClick={this.FourthImage} style={{backgroundColor: this.state.bgcolor4}} value={this.state.value}><InsideButton>Chunky Beef Stew</InsideButton></CarosalButtons3>
 
                     </CarousalHolder>
                 </ImageWrapper>
@@ -136,4 +139,9 @@ FourthImage=()=>{
         );
     }
 }
-export default Middle
+const mapStateToProps=state=>{
+    return{
+        tm:state.theme
+    };
+    };
+export default connect(mapStateToProps)(Middle); 

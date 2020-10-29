@@ -4,14 +4,46 @@ position: relative;
     width: 960px;
     margin: 0 auto;
     padding: 0;
+    @media only screen and (max-width: 990px) and (min-width: 768px)
+{
+    width: 768px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px)
+{
+    width: 420px;
+}
+@media only screen and (max-width: 479px)
+{
+    width: 300px;
+}
+@media only screen and (max-width: 1389px) and (min-width: 960px)
+{
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+}
 `;
 export const InsideLeft=styled.div`
 width: 700px;
 float: left;
-    display: inline;
     margin-left: 10px;
     margin-right: 10px;
-    
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+.container .twelve.columns {
+    width: 700px;
+}
+@media only screen and (max-width: 990px) and (min-width: 768px)
+{
+    width: 556px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px)
+{
+    width: 420px;
+}
+@media only screen and (max-width: 479px) {
+    width:300px;
+}
 `;
 export const InsideRight=styled.div`
 width: 220px;
@@ -19,6 +51,20 @@ float: left;
     display: inline;
     margin-left: 10px;
     margin-right: 10px;
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+{
+    width: 220px;
+}
+@media only screen and (max-width: 990px) and (min-width: 768px)
+{
+    width: 172px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px){
+    width: 420px;
+}
+@media only screen and (max-width: 479px){
+    width: 300px;
+}
 `;
 export const RecipeHeader=styled.h3`
 font-size: 22px;
@@ -46,7 +92,7 @@ border-bottom: 1px solid #ebebeb;
 `;
 export const DisplayImages=styled.div`
 position: relative;
-    height: 1225.02px;
+    
     color: #808080;
     margin-top:60px;
 `;
@@ -55,6 +101,26 @@ export const FirstImageContainer=styled.div`
     width: 213px;
     margin: 0 20px 0 0;
     margin-bottom: 20px !important;
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+{
+    width: 213px;
+    margin: 0 20px 0 0;
+}
+@media only screen and (max-width: 990px) and (min-width: 768px)
+{
+    width: 258px;
+    margin: 0 20px 0 0;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px)
+{
+    width: 420px;
+    margin: 0;
+}
+@media only screen and (max-width: 479px) 
+{
+    width: 300px;
+    margin: 0;
+}
 `;
 export const ImageWrapper=styled.div`
 position:relative;
@@ -164,7 +230,6 @@ margin: 0 0 35px 0;
 
 `;
 export const SearchButton=styled.button`
-background-color: #8dc63f;
 border: none;
     cursor: pointer;
     color: #fff;

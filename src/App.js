@@ -7,8 +7,11 @@ import Footer from './Components/Footer/Footer'
 import Signin from './Pages/Signin/Signin'
 import ViewRecipePage from './Pages/ViewRecipePage'
 import SubmitRecipe from './Components/SubmitRecipe/SubmitRecipe'
+import Middle from './Components/MiddleSection/Middle'
 import Home from './Pages/Home'
 import ThemeBuilder from './Components/Themediv/themebuild'
+import Container from './Components/ImagesContainer/Container'
+import ViewRecipe from './Components/ViewRecipe/ViewRecipe'
 class App extends Component {
 
   
@@ -22,6 +25,7 @@ class App extends Component {
     else
     content=<>
     <Header/>
+    <ThemeBuilder></ThemeBuilder>
     <Route path='/home' exact component={Home}/>
     <Route path='/viewrecipe' exact component={ViewRecipePage}/>
     <Route path='/submitrecipe' exact component={SubmitRecipe}/>
@@ -30,7 +34,7 @@ class App extends Component {
     return(
       <BrowserRouter>
         <div> 
-          {content} 
+          {content}
         </div>
       </BrowserRouter>
       

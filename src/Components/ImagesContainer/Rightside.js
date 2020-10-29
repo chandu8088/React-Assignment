@@ -30,7 +30,7 @@ import {InsideRight,LeftsideContainer,
     Fallowers,
     GoogleFallowers,
     InvisibleFan} from './style'
-
+    import {connect} from 'react-redux'
 class Rightside extends Component{
     render(){
         const imagedetails=[{image:"http://www.vasterad.com/themes/chow/images/featuredRecipe-01.jpg",name:"Chocolate Cake With Green Tea Cream"},
@@ -41,7 +41,7 @@ class Rightside extends Component{
                 <InsideRight>
                         <LeftsideContainer>
                             <SearchbarContainer>
-                                <SearchButton><Icon icon={ic_search}/></SearchButton>
+                                <SearchButton style={{backgroundColor:this.props.tm}}><Icon icon={ic_search}/></SearchButton>
                                 <InputTextform></InputTextform>
                             </SearchbarContainer>
                             <SideArticleContainer>
@@ -89,4 +89,9 @@ class Rightside extends Component{
         )
     }
 }
-export default Rightside
+const mapStateToProps=state=>{
+    return{
+        tm:state.theme
+    };
+    };
+export default connect(mapStateToProps)(Rightside); 

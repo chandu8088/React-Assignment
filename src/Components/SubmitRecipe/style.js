@@ -11,12 +11,44 @@ width: 960px;
     padding: 0px;
     font-family: "Open Sans", sans-serif;
     display: flex;
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+{
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+}
+@media only screen and (max-width: 990px) and (min-width: 768px)
+ {
+    width: 768px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px)
+{
+    width: 420px;
+}
+@media only screen and (max-width: 767px)
+{
+    width: 300px;
+}
 `;
 export const InnerContainer=styled.div`
 width: 100%;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+    {
+        width: 460px;
+    }
+    @media only screen and (max-width: 990px) and (min-width: 768px)
+{
+    width: 364px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px){
+    width: 420px;
+}
+@media only screen and (max-width: 767px){
+    width: 300px;
 }
 `;
 export const RecipeHeader=styled.h2`
@@ -29,6 +61,20 @@ export const SideText=styled.div`
 color: rgb(144, 144, 144);
     margin-top: 35px;
     font-size: 15px;
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+{
+    width: 460px;
+}
+@media only screen and (max-width: 990px) and (min-width: 768px)
+ {
+    width: 364px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px){
+    width: 420px;
+}
+@media only screen and (max-width: 767px){
+    width:300px;
+}
 `;
 export const HomeText=styled.span`
 font-weight: 600;
@@ -51,11 +97,46 @@ width: 960px;
     padding: 0px;
     font-family: "Open Sans", sans-serif;
     display: flex;
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+    {
+        position: relative;
+        width: 960px;
+        margin: 0 auto;
+        padding: 0;
+    }
+    @media only screen and (max-width: 990px) and (min-width: 768px)
+{
+    width: 768px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px)
+{
+    width: 420px;
+}
+@media only screen and (max-width: 767px)
+{
+    width: 300px;
+}
 `;
 export const FormElement=styled.form`
 width: 100%;
 display: block;
     margin-top: 0em;
+    @media only screen and (max-width: 1389px) and (min-width: 960px)
+ {
+    width: 940px;
+}
+@media only screen and (max-width: 990px) and (min-width: 768px)
+ {
+    width: 748px;
+}
+@media only screen and (max-width: 767px) and (min-width: 480px){
+    width: 420px;
+    padding-right:10px;
+}
+@media only screen and (max-width: 767px){
+    width:300px;
+    padding-right:10px;
+}
 `;
 export const TextWrapper=styled.div`
 width: 100%;
@@ -92,7 +173,6 @@ width: 100%;
 
 `;
 export const SubmitButton=styled.button.attrs({type:'submit'})`
-background-color: rgb(141, 198, 63);
     padding: 10px 18px;
     font-size: 14px;
     cursor: pointer;
