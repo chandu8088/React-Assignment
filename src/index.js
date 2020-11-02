@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import 'font-awesome/css/font-awesome.min.css';
 import * as serviceWorker from './serviceWorker';
-import {createStore} from 'redux';
+import {createStore,applyMiddleware} from 'redux';
 import reducer from './store/reducer';
 import {Provider} from 'react-redux';
-const store = createStore(reducer);
+import createSagaMiddleware from 'redux-saga'
+import watchLogout from './sagas/saga'
 
-
+const sagaMiddleware=createSagaMiddleware();
+const store = createStore(reducer,applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(watchLogout);
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

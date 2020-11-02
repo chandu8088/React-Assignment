@@ -79,14 +79,14 @@ passwordShow1=()=>{
     
 }
 submit=()=>{
-    
+    this.setState({isclicked:true})
     const signUpData={name:this.state.name,email:this.state.email,username:this.state.username,password:this.state.password,repeatpassword:this.state.repPassword,returnSecureToken:true}
     axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBBTcBYXnaAmM1YEg6QLpggdBscZJXVJfk',signUpData)
     .then(response=>{
         const status=response.status;
         
         if(status===200){
-         
+
             this.setState({signInsignUp:true})
          
         }

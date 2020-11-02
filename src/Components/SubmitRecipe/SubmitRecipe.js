@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component ,useState} from 'react';
 import {SubmitRecipeContainer,
     SubmitInnerContainer,
     InnerContainer,
@@ -17,7 +17,9 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 
 class SubmitRecipe extends Component{
+    
     state=({recipeName:null,preparationTime:null,cookingTime:null,catagory:null,servings:null,calories:null,chef:null,ratings:null,description:null})
+    
     recipeName=(e)=>{
         this.setState({recipeName:e.target.value})
     }
@@ -57,6 +59,7 @@ class SubmitRecipe extends Component{
         rating: this.state.ratings,
         servings: this.state.servings,
         tag: "cake"
+        
     }
     axios.post('https://foodrecipejson.firebaseio.com/.json',postdata)
     .then(response=>{

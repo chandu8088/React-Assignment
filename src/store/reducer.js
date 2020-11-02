@@ -10,7 +10,7 @@ const reducer =(state=initialState , action)=>{
             theme:'#8dc63f'
         }
         break;
-        case 'LOGOUT':return{
+        case 'LOGOUT_ASYNC':return{
             isLogin:false
         }
         break;
