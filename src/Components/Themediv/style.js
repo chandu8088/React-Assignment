@@ -54,15 +54,15 @@ export const ResetText=styled.a`
 padding: 7px 14px;
     font-weight: 700;
 background-color:#8dc63f;
-
+cursor: pointer;
     font-size: 13px;
     color: #fff;
 `;
 export const ThemeDragger=styled.div`
 top:53px;
 position:fixed;
-width:50px;
-height:50px;
+width:40px;
+height:38px;
 left:${props =>(props.value ? '205px':'0px') };
 background: #606060;
 text-align:center;

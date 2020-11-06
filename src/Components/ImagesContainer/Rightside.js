@@ -4,6 +4,7 @@ import {twitter} from 'react-icons-kit/fa/twitter'
 import {googlePlus} from 'react-icons-kit/fa/googlePlus'
 import { Icon } from 'react-icons-kit'
 import React, { Component } from 'react';
+import {UserConsumer} from '../../Context/context'
 import {InsideRight,LeftsideContainer,
     SearchbarContainer,
     SearchButton,
@@ -30,7 +31,7 @@ import {InsideRight,LeftsideContainer,
     Fallowers,
     GoogleFallowers,
     InvisibleFan} from './style'
-    import {connect} from 'react-redux'
+    
 class Rightside extends Component{
     render(){
         const imagedetails=[{image:"http://www.vasterad.com/themes/chow/images/featuredRecipe-01.jpg",name:"Chocolate Cake With Green Tea Cream"},
@@ -41,7 +42,13 @@ class Rightside extends Component{
                 <InsideRight>
                         <LeftsideContainer>
                             <SearchbarContainer>
-                                <SearchButton style={{backgroundColor:this.props.tm}}><Icon icon={ic_search}/></SearchButton>
+                                <UserConsumer>
+                                    {
+                                        (value)=>{
+                                            return <SearchButton style={{backgroundColor:value}}><Icon icon={ic_search}/></SearchButton>
+                                        }
+                                    }
+                                </UserConsumer>
                                 <InputTextform></InputTextform>
                             </SearchbarContainer>
                             <SideArticleContainer>
@@ -89,9 +96,5 @@ class Rightside extends Component{
         )
     }
 }
-const mapStateToProps=state=>{
-    return{
-        tm:state.theme
-    };
-    };
-export default connect(mapStateToProps)(Rightside); 
+
+export default Rightside;

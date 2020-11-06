@@ -172,7 +172,7 @@ width: 100%;
     font-weight: 600;
 
 `;
-export const SubmitButton=styled.button.attrs({type:'submit'})`
+export const SubmitButton=styled.button`
     padding: 10px 18px;
     font-size: 14px;
     cursor: pointer;

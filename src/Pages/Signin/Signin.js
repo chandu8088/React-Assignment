@@ -21,7 +21,7 @@ class Signin extends Component{
 state={
     Signinemail:null,
     pass:null,
-    isMatch:null,
+    errormessage:'',
     ShowPass:false,
     name:null,
         email:null,
@@ -31,8 +31,14 @@ state={
         showPassSignup:false,
         showrepPass:false,
         isclicked:false,
-        signInsignUp:false
+        signInsignUp:false,
+        emailerror:'',
+        passerror:'',
+        fielderror:'',
+        lengtherror:'',
+        valid:false
 }
+
 onChangeEmailSignin=(e)=>{
     this.setState({
         signinemail:e.target.value
@@ -78,9 +84,48 @@ passwordShow1=()=>{
     this.setState({showrepPass:!showrepPass})
     
 }
+validate=()=>{
+    let emailError=''
+    let passError=''
+    let fieldError=''
+    let lengthError=''
+    if(!this.state.name||!this.state.username||!this.state.email||!this.state.password||!this.state.repPassword){
+        fieldError='All fields must be filled'
+    }
+    if(fieldError){
+        this.setState({fielderror:fieldError})
+        return false
+    }
+    if(!this.state.email.includes('@')&&!this.state.email.includes('.')){
+        emailError='Invalid Email'
+    }
+    if(emailError){
+        this.setState({emailerror:emailError})
+        return false;
+    }
+    if(this.state.password.length<=6){
+        lengthError='Password length must be atleast 6'
+    }
+    if(lengthError){
+        this.setState({lengtherror:lengthError})
+        return false;
+    }
+    if(this.state.password!==this.state.repPassword){
+        passError='Password Doesnt match'
+    }
+    if(passError){
+        this.setState({passerror:passError})
+        return false
+    }
+    
+    return true
+
+}
 submit=()=>{
-    this.setState({isclicked:true})
-    const signUpData={name:this.state.name,email:this.state.email,username:this.state.username,password:this.state.password,repeatpassword:this.state.repPassword,returnSecureToken:true}
+    const valid=this.validate()
+    
+    if(valid){
+        const signUpData={name:this.state.name,email:this.state.email,username:this.state.username,password:this.state.password,repeatpassword:this.state.repPassword,returnSecureToken:true}
     axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBBTcBYXnaAmM1YEg6QLpggdBscZJXVJfk',signUpData)
     .then(response=>{
         const status=response.status;
@@ -89,31 +134,17 @@ submit=()=>{
 
             this.setState({signInsignUp:true})
          
-        }
-        
-        
+        } 
         
   });
+    }
     
-
 }
 equalCheck=()=>{
-    
+    this.setState({isMatch:true})
+const url='https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBBTcBYXnaAmM1YEg6QLpggdBscZJXVJfk'
 const postData={email:this.state.signinemail,password:this.state.pass,returnSecureToken:true};
-axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBBTcBYXnaAmM1YEg6QLpggdBscZJXVJfk',postData)
-            .then(response=>{
-                const status=response.status;
-                console.log(response)
-                this.setState({isMatch:1})
-                if(status===200){
-                 this.props.loginChecker()
-                 
-                 
-                }
-                
-                
-                
-          });
+this.props.loginChecker(postData,url);
 }
 passwordShowSignin=()=>{
     const {showPass}=this.state
@@ -129,22 +160,12 @@ shiftToSignup=()=>{
     render(){
        
         let errormessageSignin;
-        if(this.status!==200 && this.state.isMatch===1)
+        
+        if(this.state.valid && this.state.isMatch)
         {
-            errormessageSignin=<p>Username or Password wrong</p>
+            errormessageSignin=<p style={{color:'red'}}>Username or Password wrong</p>
         }
-        let errormessage
-    if(this.state.isclicked)
-    {
-        if(this.state.name===null||this.state.email===null||this.state.username===null||this.state.password===null||this.state.repPassword===null)
-        {
-            errormessage=<p>All fileds must be filled</p>
-        }
-        if(this.state.password!==this.state.repPassword)
-    {
-        errormessage=<p>Password doesent match</p>
-    }
-    }
+        
         return(
             <div>
                 
@@ -171,7 +192,9 @@ shiftToSignup=()=>{
 
                 </FromElement></>:<><FromElement>
                     <Pageheader>Signup</Pageheader>
-                    {errormessage}
+                    <p style={{color:'red'}}>{this.state.fielderror}
+                    {this.state.emailerror}
+                {this.state.passerror}{this.state.lengtherror}{this.state.errormessage}</p>
                     <div>
                         <NameContainer>
                             <NameLabel>Name</NameLabel>
@@ -208,13 +231,12 @@ shiftToSignup=()=>{
 }
 const mapStateToProps=state=>{
 return{
-    Lgn:state.isLogin,
-    tm:state.theme
+    Lgn:state.isLogin
 };
 };
 const mapDispatchToProps=dispatch=>{
     return{
-        loginChecker:()=>dispatch({type:'LOGIN'})
+        loginChecker:(postData,url)=>dispatch({type:'LOGIN',payload:postData,url:url})
 
     };
 };

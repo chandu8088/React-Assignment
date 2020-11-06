@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import imag1 from '../../Assets/Images/recipeThumb-01.jpg'
 import axios from 'axios'
 import { Icon } from 'react-icons-kit'
 import {clockO} from 'react-icons-kit/fa/clockO'
-import Rightside from './Rightside'
-import {Route,Link} from 'react-router-dom'
-import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {ic_search} from 'react-icons-kit/md/ic_search'
 import {facebook} from 'react-icons-kit/fa/facebook'
 import {twitter} from 'react-icons-kit/fa/twitter'
 import {googlePlus} from 'react-icons-kit/fa/googlePlus'
+import {UserConsumer} from '../../Context/context'
 import {ImageContainer,InsideLeft,
     RecipeHeader,
     Headerbar,
@@ -158,7 +156,13 @@ class Container extends Component
                     <InsideRight>
                         <LeftsideContainer>
                             <SearchbarContainer>
-                                <SearchButton style={{backgroundColor:this.props.tm}}><Icon icon={ic_search}/></SearchButton>
+                                <UserConsumer>
+                                {
+                                    (value)=>{
+                                        return <SearchButton style={{backgroundColor:value}}><Icon icon={ic_search}/></SearchButton>
+                                    }
+                                }
+                                </UserConsumer>
                                 <InputTextform onChange={this.updateSearch}></InputTextform>
                             </SearchbarContainer>
                             <SideArticleContainer>
@@ -207,9 +211,5 @@ class Container extends Component
         )
     }
 }
-const mapStateToProps=state=>{
-    return{
-        tm:state.theme
-    };
-    };
-export default connect(mapStateToProps)(Container)
+
+export default Container;

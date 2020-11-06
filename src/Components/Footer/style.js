@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-export const Main_Footer=styled.div`
+export const MainFooter=styled.div`
     background: #333333;
     color: #b8b8b8;
     width:100%;
     display:flex; 
 `;
-export const Footer_container=styled.div`
+export const Footercontainer=styled.div`
 margin: 35px auto 40px auto;
 width:960px;
 @media only screen and (max-width: 990px) and (min-width: 768px)
@@ -27,7 +27,7 @@ width:960px;
     padding: 0;
 }
 `;
-export const FIrst_column=styled.div`
+export const FIrstcolumn=styled.div`
 width: 280px;
 float: left;
     display: inline;
@@ -58,7 +58,7 @@ font-size: 16px;
     height:34px;
     margin-top:0px;
 `;
-export const F_line=styled.span`
+export const Fline=styled.span`
 border-color: #484848;
 border-bottom: 1px solid #484848;
 display:flex;
@@ -68,7 +68,7 @@ height: 1px;
     margin-top:18px;
     
 `;
-export const F_para=styled.p`
+export const Fpara=styled.p`
 line-height: 24px;
 margin-top:0;
 text-align:left;
@@ -76,10 +76,10 @@ color: #b8b8b8;
 padding-right:0px;
 
 `;
-export const Header_holder=styled.div`
+export const Headerholder=styled.div`
 display:flex;
 `;
-export const Second_column=styled.div`
+export const Secondcolumn=styled.div`
 width: 160px;
 float: left;
     margin-left: 10px;
@@ -99,7 +99,7 @@ float: left;
     width: 160px;
 }
 `;
-export const UnorderList_Archive=styled.ul`
+export const UnorderListArchive=styled.ul`
 list-style: none outside;
 padding: 0;
 margin-top:0px;

@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
-import {BrowserRouter,Redirect, Route,Switch} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
 import Signin from './Pages/Signin/Signin'
 import ViewRecipePage from './Pages/ViewRecipePage'
 import SubmitRecipe from './Components/SubmitRecipe/SubmitRecipe'
-import Middle from './Components/MiddleSection/Middle'
 import Home from './Pages/Home'
 import ThemeBuilder from './Components/Themediv/themebuild'
-import Container from './Components/ImagesContainer/Container'
-import ViewRecipe from './Components/ViewRecipe/ViewRecipe'
+import Middle from './Components/MiddleSection/Middle'
+import {UserProvider} from './Context/context'
 class App extends Component {
-
+  state={orEmail:'dsds',orPass:''}
+signIndetails(email,pass){
+  this.setState({orEmail:email,orPass:pass})
+}
   
   render() {
     const islogin=this.props.Lgn
    let content;
    if(islogin===false)
     content=
-    <Signin></Signin>
+    <Signin data={{change:this.signIndetails.bind(this)}}></Signin>
   
     else
     content=<>
@@ -33,8 +35,9 @@ class App extends Component {
     </>
     return(
       <BrowserRouter>
-        <div> 
-          {content}
+        <div>
+          <UserProvider value={this.props.tm}>{content}</UserProvider>
+        
         </div>
       </BrowserRouter>
       
@@ -46,7 +49,8 @@ class App extends Component {
 }
 const mapStateToProps=state=>{
   return{
-      Lgn:state.isLogin
+      Lgn:state.isLogin,
+      tm:state.theme
   };
   };
 export default connect(mapStateToProps)(App);

@@ -1,4 +1,4 @@
-import React, { Component ,useState} from 'react';
+import React, {useState} from 'react';
 import {SubmitRecipeContainer,
     SubmitInnerContainer,
     InnerContainer,
@@ -15,72 +15,97 @@ import {SubmitRecipeContainer,
 } from './style'
 import axios from 'axios'
 import {connect} from 'react-redux'
+import { useEffect } from 'react';
 
-class SubmitRecipe extends Component{
+function SubmitRecipe(props){
+    const [recipeName,setrecipeName]=useState(null);
+    const [preparationTime,setpreparationTime]=useState(null);
+    const [cookingTime,setcookingTime]=useState(null);
+    const [catagory,setcatagory]=useState(null);
+    const [servings,setservings]=useState(null);
+    const [calories,setcalories]=useState(null);
+    const [chef,setchef]=useState(null);
+    const [ratings,setratings]=useState(null);
+    const [description,setdescription]=useState(null);
+    const [message,setmessage]=useState(false)
+    const [submited,setsubmited]=useState(false)
+    let match=false;
     
-    state=({recipeName:null,preparationTime:null,cookingTime:null,catagory:null,servings:null,calories:null,chef:null,ratings:null,description:null})
-    
-    recipeName=(e)=>{
-        this.setState({recipeName:e.target.value})
+    const recipeNameChange=(e)=>{
+        setrecipeName(e.target.value)
     }
-    PraparationTime=(e)=>{
-        this.setState({preparationTime:e.target.value})
+    const PraparationTime=(e)=>{
+        setpreparationTime(e.target.value)
     }
-    recipeCookingTime=(e)=>{
-        this.setState({cookingTime:e.target.value})
+    const recipeCookingTime=(e)=>{
+        setcookingTime(e.target.value)
     }
-    recipeCatagory=(e)=>{
-        this.setState({catagory:e.target.value})
+    const recipeCatagory=(e)=>{
+        setcatagory(e.target.value)
     }
-    recipeServings=(e)=>{
-        this.setState({servings:e.target.value})
+    const recipeServings=(e)=>{
+        setservings(e.target.value)
     }
-    recipeCalories=(e)=>{
-        this.setState({calories:e.target.value})
+    const recipeCalories=(e)=>{
+        setcalories(e.target.value)
     }
-    recipeChef=(e)=>{
-        this.setState({chef:e.target.value})
-    }
-    recipeRating=(e)=>{
-        this.setState({ratings:e.target.value})
-    }
-    recipeDescription=(e)=>{
-        this.setState({description:e.target.value})
-    }
-    submit=()=>{
+    const recipeChef=(e)=>{
+        setchef(e.target.value)
+    };
+    const recipeRating=(e)=>{
+        setratings(e.target.value)
+    };
+    const recipeDescription=e=>{
+        setdescription(e.target.value)
+    };
+    const submit=()=>{
         const postdata={ bannerimage: "sliderA_01",
-        calories : this.state.calories,
-        chef:this.state.calories ,
-        cooking: this.state.cooking,
-        description:this.state.description,
+        calories : calories,
+        chef:chef ,
+        cooking: preparationTime,
+        description:description,
         image: "recipeThumb-06",
-        min: this.state.cooking,
-        name: this.state.recipeName,
-        rating: this.state.ratings,
-        servings: this.state.servings,
+        min: cookingTime,
+        name: recipeName,
+        rating: ratings,
+        servings: servings,
         tag: "cake"
         
     }
-    axios.post('https://foodrecipejson.firebaseio.com/.json',postdata)
+    if(recipeName!==null||preparationTime!==null||cookingTime!==null||catagory!==null||servings!==null||calories!==null||chef!==null||ratings!==null||description!==null){
+
+        axios.post('https://foodrecipejson.firebaseio.com/.json',postdata)
     .then(response=>{
         const status=response.status;
-         
+         if(status===200){
+             setsubmited(true);
+         }
         }
      
   );
+    }
+    else
+    {
+        setmessage(true)
+
+    }
+    
    
     }
-    render(){
-    let errormessage;
-    if(this.status===200){
-        errormessage=<p>seccessfully submitted recipe</p>
+useEffect(()=>{
+    if(match===true){
+        if(recipeName===null||preparationTime===null||cookingTime===null||catagory===null||servings===null||calories===null||chef===null||ratings===null||description===null){
+            
+        }
     }
+})
+    
         return(
         <div>
             <SubmitRecipeContainer>
                 <SubmitInnerContainer>
                     <InnerContainer>
-                        {errormessage}
+                        
                         <RecipeHeader>
                             Submit Recipe
                         </RecipeHeader>
@@ -93,35 +118,41 @@ class SubmitRecipe extends Component{
                     
                         <TextWrapper>
                         <InputName>Recipe Name</InputName>
-                        <InputBox onChange={this.recipeName}></InputBox>
+                        <InputBox onChange={recipeNameChange}></InputBox>
                         <InputName>Preparation Time</InputName>
-                        <InputBox onChange={this.PraparationTime}></InputBox>
+                        <InputBox onChange={PraparationTime}></InputBox>
                         <InputName>Cooking Time</InputName>
-                        <InputBox onChange={this.recipeCookingTime}></InputBox>
+                        <InputBox onChange={recipeCookingTime}></InputBox>
                         <InputName>Recipe Catagory</InputName>
-                        <InputBox onChange={this.recipeCatagory}></InputBox>
+                        <InputBox onChange={recipeCatagory}></InputBox>
                         <InputName>Servings</InputName>
-                        <InputBox onChange={this.recipeServings}></InputBox>
+                        <InputBox onChange={recipeServings}></InputBox>
                         <InputName>Calories</InputName>
-                        <InputBox onChange={this.recipeCalories}></InputBox>
+                        <InputBox onChange={recipeCalories}></InputBox>
                         <InputName>Chef</InputName>
-                        <InputBox onChange={this.recipeChef}></InputBox>
+                        <InputBox onChange={recipeChef}></InputBox>
                         <InputName>Ratings</InputName>
-                        <InputBox onChange={this.recipeRating}></InputBox>
+                        <InputBox onChange={recipeRating}></InputBox>
                         
                         
                         </TextWrapper>
                     
                     <TextWrapper>
                         <InputName>Description</InputName>
-                        <TextArea onChange={this.recipeDescription}></TextArea>
+                        <TextArea onChange={recipeDescription}></TextArea>
                     </TextWrapper>
-                    <SubmitButton onClick={this.submit} style={{backgroundColor:this.props.tm}}>Submit Recipe</SubmitButton>
+                    <SubmitButton type='button' onClick={submit} style={{backgroundColor:props.tm}}>Submit Recipe</SubmitButton>
+                    { message ?<p style={{color:'red'}}>all fields must be filled</p>:''
+
+                    }
+                    {
+                        submited? <p style={{color:'green'}}>Seccessfully Submitted </p>:''
+                    }
                 </FormElement>
             </FormWrapper>
         </div>)
     }
-}
+
 const mapStateToProps=state=>{
     return{
         tm:state.theme

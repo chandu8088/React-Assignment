@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import {Main_Footer,
-        Footer_container,
-        FIrst_column,Headertag,
-        F_line,
-        F_para,
-        Header_holder,
-        Second_column,
-        UnorderList_Archive,
+import {MainFooter,
+        Footercontainer,
+        FIrstcolumn,Headertag,
+        Fline,
+        Fpara,
+        Headerholder,
+        Secondcolumn,
+        UnorderListArchive,
         ListInside,
         InputElement,
         ButtonElement
     } from './style'
-import {connect} from 'react-redux'
+import {UserConsumer} from '../../Context/context'
 
 class Footer extends Component {
     
@@ -19,64 +19,66 @@ class Footer extends Component {
     render() {
         return (
             <div>
-                <Main_Footer>
-                    <Footer_container>
-                        <FIrst_column>
-                            <Header_holder>
+                <MainFooter>
+                    <Footercontainer>
+                        <FIrstcolumn>
+                            <Headerholder>
                             <Headertag>About</Headertag>
-                            <F_line></F_line>
-                            </Header_holder>
-                            <F_para>
+                            <Fline></Fline>
+                            </Headerholder>
+                            <Fpara>
                                 Cras at ultrices erat, sed vulputate eros. Nunc at augue gravida est fermentum vulputate. Pellentesque et ipsum in dui malesuada tempus.
-                            </F_para>
-                        </FIrst_column>
-                        <Second_column>
-                            <Header_holder>
+                            </Fpara>
+                        </FIrstcolumn>
+                        <Secondcolumn>
+                            <Headerholder>
                                 <Headertag>Archives</Headertag>
-                                <F_line></F_line>
-                            </Header_holder>
-                            <UnorderList_Archive>
+                                <Fline></Fline>
+                            </Headerholder>
+                            <UnorderListArchive>
                                 <ListInside>June 2014</ListInside>
                                 <ListInside>July 2014</ListInside>
                                 <ListInside>August 2014</ListInside>
                                 <ListInside>September 2014</ListInside>
                                 <ListInside>November 2014</ListInside>
-                            </UnorderList_Archive>
-                        </Second_column>
-                        <Second_column>
-                            <Header_holder>
+                            </UnorderListArchive>
+                        </Secondcolumn>
+                        <Secondcolumn>
+                            <Headerholder>
                                 <Headertag>Recipes</Headertag>
-                                <F_line></F_line>
-                            </Header_holder>
-                            <UnorderList_Archive>
+                                <Fline></Fline>
+                            </Headerholder>
+                            <UnorderListArchive>
                                 <ListInside>Browse Recipes</ListInside>
                                 <ListInside>Recipes</ListInside>
                                 <ListInside>Submit Recipe</ListInside>
-                            </UnorderList_Archive>
-                        </Second_column>
-                        <FIrst_column>
-                            <Header_holder>
+                            </UnorderListArchive>
+                        </Secondcolumn>
+                        <FIrstcolumn>
+                            <Headerholder>
                             <Headertag>Newsletter</Headertag>
-                            <F_line></F_line>
-                            </Header_holder>
-                            <F_para>
+                            <Fline></Fline>
+                            </Headerholder>
+                            <Fpara>
                                 Sign up to receive email updates on new product announcements,gift ideas, sales and more.
-                            </F_para>
+                            </Fpara>
                             <form action='#'>
                                 <InputElement type="text" placeholder="mail@example.com"></InputElement>
-                                <ButtonElement type="submit" value={this.props.tm}>SUBSCRIBE</ButtonElement>
+                                <UserConsumer>
+                                    {
+                                        (value)=>{
+                                            return <ButtonElement type="button" value={value}>SUBSCRIBE</ButtonElement>
+                                        }
+                                    }
+                                </UserConsumer>
                             </form>
-                        </FIrst_column>
-                    </Footer_container>
-                </Main_Footer>
+                        </FIrstcolumn>
+                    </Footercontainer>
+                </MainFooter>
                 
             </div>
         )
     }
 }
-const mapStateToProps=state=>{
-    return{
-        tm:state.theme
-    };
-    };
-export default connect(mapStateToProps)(Footer); 
+
+export default Footer; 

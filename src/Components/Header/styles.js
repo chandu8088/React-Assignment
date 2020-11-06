@@ -117,7 +117,7 @@ background-color: #333;
     margin: -3px 0 0 0;
     position: absolute;
     top: 100%;
-    left:760px;
+    left:650px;
     width: 175px;
     padding: 0;
     z-index:5;
@@ -139,34 +139,8 @@ const UnorderSublist = styled.li`
     font-size: 14px;
     
 `;
-const UnorderListPage=styled.ul`
-border-color: #8dc63f !important;
-background-color: #333;
-    
-    border-top: 3px solid #808080;
-    margin: -3px 0 0 0;
-    position: absolute;
-    top: 100%;
-    left:860px;
-    width: 175px;
-    padding: 0;
-    z-index:5;
-`;
-const UnorderListShop=styled.ul`
-border-color: #8dc63f !important;
-background-color: #333;
-    
-    border-top: 3px solid #808080;
-    margin: -3px 0 0 0;
-    position: absolute;
-    top: 100%;
-    left:950px;
-    width: 175px;
-    padding: 0;
-    overflow:visible;
-    z-index:5;
 
-`;
+
 export const UnorderListHome=styled.ul`
 border-color: #8dc63f !important;
 background-color: #333;
@@ -185,7 +159,7 @@ background-color: #333;
     margin: -3px 0 0 0;
     position: absolute;
     top: 100%;
-    left:1040px;
+    left:760px;
     width: 145px;
     padding: 0;
     overflow:visible;
@@ -295,5 +269,5 @@ color:#808080;
     background-color: #c0c0c0;
 }`
 export { MainHeader, Container, Chow_image, Imagcontainer, Navtab, Navbar, Home_container, Arrow,UnorderListRecipe, UnorderList, UnorderSublist,
-    UnorderListShop,UnorderListPage
+    
  }

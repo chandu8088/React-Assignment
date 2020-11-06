@@ -10,11 +10,8 @@ import {MainHeader,
     Chow_image,
     Home_container,
     Arrow,
-    UnorderList,
     UnorderSublist,
     UnorderListRecipe,
-    UnorderListShop,
-    UnorderListPage,
     BorderSubmit,MenuSpan,
     Button,
     MobileDiv,
@@ -62,6 +59,7 @@ class Header extends Component
         this.setState({showSubmit:false});
     }
     logout=()=>{
+        
         this.props.logoutChecker()
     }
     dropDownStateTrue=()=>{
@@ -85,17 +83,11 @@ class Header extends Component
                 <>
                     <DropDownContainer>
                         <Heading to="/home">Home</Heading>
-                        <Heading >Demos</Heading>
-                        <SubHeading>Grid Homepage</SubHeading>
-                        <SubHeading>List Homepage</SubHeading>
-                        <SubHeading>Boxed Version</SubHeading>
                         <Heading >Recipes</Heading>
                         <SubHeading>Browse Recipes</SubHeading>
                         <SubHeading>Recipe Page #1</SubHeading>
                         <SubHeading>Recipe Page #2</SubHeading>
-                        <Heading >Pages</Heading>
-                        <SubHeading>Shortcodes</SubHeading>
-                        <SubHeading>Typography</SubHeading>
+                    
                         <Heading to="/submitrecipe" >Submit Recipe</Heading>
                         <StyledLogout onClick={this.logout}>Logout</StyledLogout>
     
@@ -107,7 +99,7 @@ class Header extends Component
                 <>
                     <MobileDiv>
                         <MenuSpan>MENU</MenuSpan>
-                        <Button onClick={this.dropDownStateFalse}><MenuSpan><i class="fa fa-bars" aria-hidden="true" style={{ fontSize: "200%" }}></i></MenuSpan></Button>
+                        <Button onClick={this.dropDownStateFalse}><MenuSpan><i className="fa fa-bars" aria-hidden="true" style={{ fontSize: "200%" }}></i></MenuSpan></Button>
                     </MobileDiv>
                 </>}
         return(
@@ -126,16 +118,7 @@ class Header extends Component
                             <Navbar>
                             <Link to='/home' style={{ textDecoration: 'none',color:'black'}}><Home_container>Home</Home_container></Link>
                                 
-                                <Home_container onMouseOver={this.OnDemosHandler} onMouseOut={this.OverDemoshandler}>Demos</Home_container>
-                                {this.state.showDemos === true ?
-                                    <div>
-                                        <UnorderList>
-                                            <UnorderSublist>Grid Homepage</UnorderSublist>
-                                            <UnorderSublist>List Homepage</UnorderSublist>
-                                            <UnorderSublist>Boxed Version</UnorderSublist>
-                                        </UnorderList>
-                                    </div>:null
-                                }
+                                
                                 <Link to='/viewrecipe' style={{ textDecoration: 'none',color:'black'}}><Home_container onMouseOver={this.OnRecipesHandler} onMouseOut={this.OverRecipeshandler}>Recipes</Home_container></Link>
                                 {this.state.showRecipes === true ?
                                     <div>
@@ -146,25 +129,7 @@ class Header extends Component
                                         </UnorderListRecipe>
                                     </div>:null
                                 }
-                                <Home_container onMouseOver={this.OnPageHandler} onMouseOut={this.OverPagehandler}>Pages</Home_container>
-                                {this.state.showPages === true ?
-                                    <div>
-                                        <UnorderListPage>
-                                            <UnorderSublist>Shortcodes</UnorderSublist>
-                                            <UnorderSublist>Typography</UnorderSublist>
-                                            <UnorderSublist>Contact</UnorderSublist>
-                                        </UnorderListPage>
-                                    </div>:null
-                                }
-                                <Home_container onMouseOver={this.OnShopHandler} onMouseOut={this.OverShophandler}>Shop</Home_container>
-                                {this.state.showShop === true ?
-                                    <div>
-                                        <UnorderListShop>
-                                            <UnorderSublist>Shop</UnorderSublist>
-                                            <UnorderSublist>Product Page</UnorderSublist>
-                                        </UnorderListShop>
-                                    </div>:null
-                                }
+                                
                                 <Arrow></Arrow>
                                 <Link to='/submitrecipe' style={{ textDecoration: 'none',color:'black'}}><Home_container onMouseOver={this.OnSubmitHandler} onMouseOut={this.OverSubmithandler}>SubmitRecipe</Home_container></Link>
                                 {this.state.showSubmit===true ?
